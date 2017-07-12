@@ -1,5 +1,7 @@
 # keyv-api-tests
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/lukechilds/keyv-api-tests.svg)](https://greenkeeper.io/)
+
 > Test suite for Keyv API compliancy
 
 [![Build Status](https://travis-ci.org/lukechilds/keyv-api-tests.svg?branch=master)](https://travis-ci.org/lukechilds/keyv-api-tests)
