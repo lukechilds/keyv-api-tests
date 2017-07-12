@@ -1,6 +1,6 @@
 {
   "name": "keyv-api-tests",
-  "version": "0.0.0",
+  "version": "1.0.2",
   "description": "Test suite for Keyv API compliancy",
   "main": "dist/index.js",
   "scripts": {
@@ -18,7 +18,7 @@
   },
   "babel": {
     "presets": [
-      "@ava/stage-4"
+      "es2016-node4"
     ]
   },
   "repository": {
@@ -42,9 +42,9 @@
     "delay": "^2.0.0"
   },
   "devDependencies": {
-    "@ava/babel-preset-stage-4": "^1.1.0",
     "ava": "^0.20.0",
     "babel-cli": "^6.24.1",
+    "babel-preset-es2016-node4": "^6.0.1",
     "coveralls": "^2.13.1",
     "eslint-config-xo-lukechilds": "^1.0.0",
     "keyv": "*",
