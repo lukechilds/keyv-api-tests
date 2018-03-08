@@ -78,9 +78,9 @@ const keyvApiTests = (test, Keyv, store) => {
 
 	test.serial('.clear() returns a Promise', t => {
     const keyv = new Keyv({ store: store() });
-    const rs = keyv.clear();
-    t.true(rs instanceof Promise);
-    await rs;
+    const returnValue = keyv.clear();
+    t.true(returnValue instanceof Promise);
+    await returnValue;
 	});
 
 	test.serial('.clear() resolves to undefined', async t => {
