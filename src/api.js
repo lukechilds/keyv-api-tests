@@ -53,6 +53,51 @@ const keyvApiTests = (test, Keyv, store) => {
 		t.is(await keyv.get('foo'), undefined);
 	});
 
+	test.serial('.has(key) returns a Promise', async t => {
+		const store = new Map();
+		const keyv = new Keyv({ store });
+		await keyv.set('foo', 'bar');
+		t.true(keyv.has('foo') instanceof Promise);
+	});
+
+	test.serial('.has(key) resolves to true', async t => {
+		const store = new Map();
+		const keyv = new Keyv({ store });
+		await keyv.set('foo', 'bar');
+		t.is(await keyv.has('foo'), true);
+		await keyv.set('buzz', null);
+		t.is(await keyv.has('buzz'), true);
+		await keyv.set('aldrin', undefined);
+		t.is(await keyv.has('aldrin'), true);
+	});
+
+	test.serial('.has(key) resolves to false', async t => {
+		const store = new Map();
+		const keyv = new Keyv({ store });
+		t.is(await keyv.has('fizz'), false);
+	});
+
+	test.serial('.has(key) resolves to false after .delete(key)', async t => {
+		const store = new Map();
+		const keyv = new Keyv({ store });
+		await keyv.set('foo', 'bar');
+		t.is(await keyv.has('foo'), true);
+		await keyv.delete('foo');
+		t.is(await keyv.has('foo'), false);
+	});
+
+	test.serial('.has(key) resolves to false after expiration', async t => {
+		const startTime = Date.now();
+		tk.freeze(startTime);
+		const store = new Map();
+		const keyv = new Keyv({ store });
+		await keyv.set('foo', 'bar', 100);
+		t.is(await keyv.has('foo'), true);
+		tk.freeze(startTime + 150);
+		t.is(await keyv.has('foo'), false);
+		tk.reset();
+	});
+
 	test.serial('.delete(key) returns a Promise', t => {
 		const keyv = new Keyv({ store: store() });
 		t.true(keyv.delete('foo') instanceof Promise);
